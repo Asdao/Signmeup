@@ -33,6 +33,8 @@ export const useSpeechSynthesis = (): useSpeechSynthesisReturn => {
             v.lang.startsWith('en') &&
             (v.name.toLowerCase().includes('female') ||
                 v.name.toLowerCase().includes('samantha') ||
+                v.name.toLowerCase().includes('zira') ||
+                v.name.toLowerCase().includes('mira') ||
                 v.name.toLowerCase().includes('victoria') ||
                 v.name.toLowerCase().includes('google us english')) // Often defaults to a female voice
         ) || voices.find(v => v.lang.startsWith('en'));

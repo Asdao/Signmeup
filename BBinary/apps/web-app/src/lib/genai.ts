@@ -1,7 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.GOOGLE_API_KEY;
-const modelName = process.env.MODEL_NAME || "gemma-3-4b-it";
+// Vite auto-loads VITE_ prefixed vars from .env into import.meta.env
+const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+const modelName = import.meta.env.VITE_MODEL_NAME || "gemma-3-4b-it";
 
 let client: GoogleGenAI | null = null;
 
@@ -20,7 +21,6 @@ export const generateContent = async (prompt: string, context?: string) => {
     try {
         const aiClient = getClient();
 
-        // Humanized system instruction with professional empathy
         const systemInstruction = `[SYSTEM INSTRUCTION: You are Aurora, a thoughtful and empathetic Professional Assistant. 
 Your tone should be warm, direct, and supportive. You are not just a machine; you are a partner in the user's wellbeing.
 1. Use professional empathy—acknowledge user emotions (Resonance) and environmental context naturally.

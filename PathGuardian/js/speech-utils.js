@@ -10,8 +10,13 @@
 
     function initVoices() {
         const voices = synth.getVoices();
-        // Try to find a female English voice for Aurora
+        // Prioritize female English voices
         voice = voices.find(v => v.name.includes('Samantha')) ||
+            voices.find(v => v.name.includes('Microsoft Zira')) ||
+            voices.find(v => v.name.includes('Karen')) ||
+            voices.find(v => v.name.includes('Google US English Female')) ||
+            voices.find(v => v.name.includes('Victoria')) ||
+            voices.find(v => v.name.toLowerCase().includes('female')) ||
             voices.find(v => v.name.includes('Google US English')) ||
             voices.find(v => v.lang.includes('en-US'));
     }
