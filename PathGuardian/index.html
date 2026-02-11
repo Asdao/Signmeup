@@ -47,12 +47,17 @@
     <!-- Top section -->
     <div class="flex-1 flex flex-col items-center justify-center px-6 pt-12 pb-6 text-center">
         <!-- Logo -->
-        <div class="mb-6">
+        <div class="mb-6 relative">
             <div
-                class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-2xl">
+                class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-2xl relative z-10">
                 <span class="material-icons text-white text-4xl">accessible</span>
             </div>
         </div>
+
+        <a href="main_launcher.html"
+            class="inline-flex items-center gap-2 text-blue-200 hover:text-white mb-6 uppercase tracking-widest text-xs font-bold transition-colors">
+            <span class="material-icons text-sm">arrow_back</span> Return to Main Menu
+        </a>
 
         <!-- Branding -->
         <h1 class="text-5xl font-extrabold text-white tracking-tight mb-3">PathGuardian</h1>
@@ -89,7 +94,7 @@
         <h2 class="text-2xl font-bold text-slate-800 text-center mb-8">Who are you?</h2>
         <div class="space-y-5 max-w-md mx-auto">
             <!-- Senior / Navigator -->
-            <a href="senior_home.html"
+            <a href="user_home.html"
                 class="card-hover block bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-2xl border-2 border-blue-200 no-underline">
                 <div class="flex items-center gap-5">
                     <div
@@ -104,7 +109,7 @@
                 </div>
             </a>
             <!-- Caregiver -->
-            <a href="caregiver_welcome.html"
+            <a href="caretaker_dashboard.html"
                 class="card-hover block bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-2xl border-2 border-emerald-200 no-underline">
                 <div class="flex items-center gap-5">
                     <div
