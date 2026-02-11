@@ -1,0 +1,93 @@
+require('dotenv').config();
+const inquirer = require('inquirer');
+const { spawn } = require('child_process');
+const path = require('path');
+
+const processes = {};
+
+function startProcess(name, command, args, cwd = process.cwd()) {
+  if (processes[name]) {
+    console.log(`${name} is already running.`);
+    return;
+  }
+
+  console.log(`Starting ${name}...`);
+  const child = spawn(command, args, {
+    cwd,
+    stdio: 'inherit',
+    shell: true,
+    env: { ...process.env }
+  });
+
+  processes[name] = child;
+
+  child.on('close', (code) => {
+    console.log(`${name} exited with code ${code}`);
+    delete processes[name];
+  });
+}
+
+function stopProcess(name) {
+  if (!processes[name]) {
+    console.log(`${name} is not running.`);
+    return;
+  }
+
+  console.log(`Stopping ${name}...`);
+  // This is a bit tricky with shell:true and cross-platform, but we'll try standard kill
+  processes[name].kill();
+  delete processes[name];
+}
+
+async function mainMenu() {
+  const { action } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'action',
+      message: 'Manage Unified Workspace:',
+      choices: [
+        { name: 'Load PathGuardian (Port 8081)', value: 'load_pg' },
+        { name: 'Load BBinary (Port 5173)', value: 'load_bb' },
+        { name: 'Load ALL', value: 'load_all' },
+        new inquirer.Separator(),
+        { name: 'Unload PathGuardian', value: 'unload_pg' },
+        { name: 'Unload BBinary', value: 'unload_bb' },
+        { name: 'Unload ALL', value: 'unload_all' },
+        new inquirer.Separator(),
+        { name: 'Exit', value: 'exit' }
+      ]
+    }
+  ]);
+
+  switch (action) {
+    case 'load_pg':
+      startProcess('PathGuardian', 'npm', ['run', 'start:pg']);
+      break;
+    case 'load_bb':
+      startProcess('BBinary', 'npm', ['run', 'start:bb']);
+      break;
+    case 'load_all':
+      startProcess('PathGuardian', 'npm', ['run', 'start:pg']);
+      startProcess('BBinary', 'npm', ['run', 'start:bb']);
+      break;
+    case 'unload_pg':
+      stopProcess('PathGuardian');
+      break;
+    case 'unload_bb':
+      stopProcess('BBinary');
+      break;
+    case 'unload_all':
+      stopProcess('PathGuardian');
+      stopProcess('BBinary');
+      break;
+    case 'exit':
+      Object.keys(processes).forEach(name => stopProcess(name));
+      process.exit(0);
+  }
+
+  // Loop back to menu
+  setTimeout(mainMenu, 1000);
+}
+
+console.clear();
+mainMenu();

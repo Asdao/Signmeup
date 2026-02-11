@@ -1,0 +1,18 @@
+{
+  "name": "unifier-bbinary",
+  "version": "1.0.0",
+  "description": "Unified workspace for PathGuardian and BBinary",
+  "scripts": {
+    "postinstall": "npm install --prefix BBinary",
+    "dev": "node scripts/manage.js",
+    "start:pg": "http-server PathGuardian -p 8081 -c-1 --cors",
+    "start:bb": "npm run dev --prefix BBinary",
+    "start:all": "concurrently \"npm run start:pg\" \"npm run start:bb\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^17.2.4",
+    "http-server": "^14.1.1",
+    "inquirer": "^9.2.14"
+  }
+}
