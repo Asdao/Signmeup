@@ -40,7 +40,7 @@ The entire suite is managed by a centralized control script.
 
 ### 1. Unified Installation
 ```bash
-npm run install:all
+npm install
 ```
 
 ### 2. Configure Secrets (Crucial)
@@ -52,11 +52,11 @@ GOOGLE_API_KEY=your_key_here
 VITE_MODEL_NAME=gemma-3-4b-it
 ```
 
-### 3. Launch One-Click Management
+### 3. Launch All Services
 ```bash
 npm run dev
 ```
-This interactive CLI lets you start/stop individual modules or the entire suite simultaneously.
+This starts all three modules concurrently (PathGuardian on port 8081, BBinary on port 5173, Sign Interpreter on port 3000). For individual control, use `npm run manage`.
 
 ---
 
