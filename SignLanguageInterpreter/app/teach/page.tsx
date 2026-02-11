@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Suspense } from "react"
 import { useInterpreterController } from "@/lib/hooks/useInterpreterController"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
@@ -23,7 +23,7 @@ function Input({ className, ...props }: React.InputHTMLAttributes<HTMLInputEleme
 
 const STEPS = ["Name", "Record", "Review", "Save"]
 
-export default function TeachPage() {
+function TeachContent() {
     const router = useRouter()
     const [currentStep, setCurrentStep] = useState(0)
     const [phraseName, setPhraseName] = useState("")
@@ -190,5 +190,13 @@ export default function TeachPage() {
                 </Card>
             </div>
         </div>
+    )
+}
+
+export default function TeachPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">Loading Teach Page...</div>}>
+            <TeachContent />
+        </Suspense>
     )
 }

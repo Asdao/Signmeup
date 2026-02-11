@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Suspense } from "react"
 import { useInterpreterController } from "@/lib/hooks/useInterpreterController"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -14,7 +14,7 @@ import { ScanningKeyboard } from "@/components/ScanningKeyboard"
 import { SignLanguageSelector } from "@/components/SignLanguageSelector"
 import { Camera, RefreshCw, Volume2, Mic, Settings, LayoutGrid, Eye, EyeOff, Save, Trash2, StopCircle, PlayCircle } from "lucide-react"
 
-export default function InterpreterPage() {
+function InterpreterContent() {
     const {
         videoRef,
         canvasRef,
@@ -51,13 +51,6 @@ export default function InterpreterPage() {
             setCommittedText((prev) => prev + prediction.label)
         }
     }
-
-    // Auto-commit for demo purposes or via button in real app
-    // We'll let the user commit via keyboard or a big "Commit" button if we had one
-    // But for now, let's just show the prediction and let them type or use the scanning keyboard.
-
-    // Actually, in the design "Letters" tab showed predictions.
-    // We can have a button to "Add" the prediction.
 
     return (
         <div className="min-h-screen bg-slate-50 p-4 font-sans text-slate-900">
@@ -169,7 +162,7 @@ export default function InterpreterPage() {
                                         placeholder="Typed text will appear here..."
                                     />
                                     <div className="absolute bottom-4 right-4 flex gap-2">
-                                        <Button size="icon" variant="ghost" onClick={() => setCommittedText("")} title="Clear">
+                                        <Button size="icon" variant="ghost" onClick={setCommittedText.bind(null, "")} title="Clear">
                                             <Trash2 className="w-5 h-5" />
                                         </Button>
                                     </div>
@@ -257,5 +250,13 @@ export default function InterpreterPage() {
                 suggestions={["HELLO", "THANK YOU", "YES", "NO"]}
             />
         </div>
+    )
+}
+
+export default function InterpreterPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">Loading Interpreter...</div>}>
+            <InterpreterContent />
+        </Suspense>
     )
 }

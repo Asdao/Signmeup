@@ -2,7 +2,7 @@
 
 A privacy-focused, offline-capable web application for learning and recognizing sign language using your webcam.
 
-## � Tech Stack
+## Tech Stack
 
 **Frontend & UI**
 - **Framework**: [Next.js 16](https://nextjs.org/) (React 19, Turbopack)

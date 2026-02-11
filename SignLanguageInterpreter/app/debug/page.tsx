@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, Suspense } from "react";
 import { getHandLandmarker } from "@/lib/vision/handLandmarker";
 import { getPoseLandmarker } from "@/lib/vision/poseLandmarker";
 import { FeatureProcessor } from "@/lib/features/featureEngineering";
@@ -12,7 +12,7 @@ import { SignLanguageSelector } from "@/components/SignLanguageSelector";
 import { SIGN_LANGUAGES, DEFAULT_LANGUAGE, SignLanguageKey } from "@/lib/signLanguages";
 import { useSearchParams } from "next/navigation";
 
-export default function DebugPage() {
+function DebugContent() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isCameraRunning, setIsCameraRunning] = useState(false);
@@ -40,6 +40,10 @@ export default function DebugPage() {
     const featureProcessorRef = useRef<FeatureProcessor | null>(null);
     const classifierRef = useRef<SignClassifier | null>(null);
     const requestRef = useRef<number>(0);
+
+    const searchParams = useSearchParams();
+    const currentLang = (searchParams.get("lang") as SignLanguageKey) || DEFAULT_LANGUAGE;
+    const currentConfig = SIGN_LANGUAGES[currentLang] || SIGN_LANGUAGES[DEFAULT_LANGUAGE];
 
     useEffect(() => {
         async function load() {
@@ -256,9 +260,6 @@ export default function DebugPage() {
 
     const [trainingLogs, setTrainingLogs] = useState<string[]>([]);
     const [isTraining, setIsTraining] = useState(false);
-    const searchParams = useSearchParams();
-    const currentLang = (searchParams.get("lang") as SignLanguageKey) || DEFAULT_LANGUAGE;
-    const currentConfig = SIGN_LANGUAGES[currentLang] || SIGN_LANGUAGES[DEFAULT_LANGUAGE];
 
     const handleTrain = async () => {
         setIsTraining(true);
@@ -432,4 +433,12 @@ export default function DebugPage() {
             </div>
         </div>
     );
+}
+
+export default function DebugPage() {
+    return (
+        <Suspense fallback={<div className="p-4 flex items-center justify-center text-slate-500">Loading Debug Tools...</div>}>
+            <DebugContent />
+        </Suspense>
+    )
 }

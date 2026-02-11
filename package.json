@@ -4,7 +4,8 @@
   "description": "Unified workspace for PathGuardian and BBinary",
   "scripts": {
     "postinstall": "npm install --prefix BBinary",
-    "dev": "node scripts/manage.js",
+    "dev": "concurrently \"npm run start:pg\" \"npm run start:bb\" \"npm run start:sli\"",
+    "manage": "node scripts/manage.js",
     "start:pg": "http-server PathGuardian -p 8081 -c-1 --cors",
     "start:bb": "npm run dev --prefix BBinary",
     "start:sli": "npm run dev --prefix SignLanguageInterpreter",
