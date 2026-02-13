@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>PathGuardian - Voice Input</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <script>
@@ -23,7 +23,7 @@
     </script>
     <style>
         body {
-            font-family: 'Lexend', sans-serif;
+            font-family: 'Inter', sans-serif;
             min-height: 100dvh;
             -webkit-tap-highlight-color: transparent;
         }
@@ -70,7 +70,7 @@
         <p class="text-sm text-slate-400 mb-8">Say "Take me to National Museum"</p>
 
         <!-- Transcript Display -->
-        <div class="w-full max-w-md min-h-[80px] bg-white rounded-2xl shadow-lg p-6 mb-8 flex items-center justify-center"
+        <div class="w-full max-w-md min-h-[80px] glass-orb rounded-[32px] border-none shadow-sm p-6 mb-8 flex items-center justify-center"
             id="transcriptBox">
             <p class="text-2xl font-bold text-center text-slate-800" id="transcriptText"></p>
         </div>
@@ -79,7 +79,7 @@
         <div class="relative mb-8">
             <div class="pulse-ring rounded-full" id="pulseRing">
                 <button id="micBtn" onclick="toggleListening()"
-                    class="w-40 h-40 bg-primary rounded-full shadow-2xl shadow-primary/40 flex items-center justify-center border-8 border-white active:scale-95 transition-transform">
+                    class="w-40 h-40 bg-slate-900 rounded-full shadow-2xl shadow-primary/40 flex items-center justify-center border-8 border-white active:scale-95 transition-transform">
                     <span class="material-icons text-6xl text-white" id="micIcon">mic</span>
                 </button>
             </div>
@@ -95,7 +95,7 @@
             </div>
             <!-- YES - go to wayfinding directly -->
             <button onclick="confirmDestination()" id="confirmBtn"
-                class="w-full bg-primary hover:bg-primary/90 text-white py-6 rounded-2xl font-bold text-2xl flex items-center justify-center gap-3 shadow-xl shadow-primary/30 active:scale-95 transition-transform">
+                class="w-full bg-slate-900 hover:bg-slate-900/90 text-white py-6 rounded-2xl font-bold text-2xl flex items-center justify-center gap-3 shadow-xl shadow-primary/30 active:scale-95 transition-transform">
                 <span class="material-icons text-3xl">check_circle</span>
                 Continue to Navigation
             </button>
@@ -129,7 +129,7 @@
                 <span class="text-xs font-medium">Map</span>
             </a>
             <div class="flex flex-col items-center gap-1 text-primary">
-                <div class="p-2 bg-primary/10 rounded-lg">
+                <div class="p-2 bg-slate-900/10 rounded-lg">
                     <span class="material-icons text-2xl">mic_none</span>
                 </div>
                 <span class="text-xs font-bold">Voice</span>
@@ -166,7 +166,7 @@
             r.onstart = () => {
                 isListening = true;
                 document.getElementById('micBtn').classList.add('bg-emerald-500');
-                document.getElementById('micBtn').classList.remove('bg-primary');
+                document.getElementById('micBtn').classList.remove('bg-slate-900');
                 document.getElementById('pulseRing').classList.add('listening');
                 document.getElementById('statusText').textContent = 'Listening...';
                 document.getElementById('statusText').style.color = '#10b981';
@@ -193,7 +193,7 @@
             r.onend = () => {
                 isListening = false;
                 document.getElementById('micBtn').classList.remove('bg-emerald-500');
-                document.getElementById('micBtn').classList.add('bg-primary');
+                document.getElementById('micBtn').classList.add('bg-slate-900');
                 document.getElementById('pulseRing').classList.remove('listening');
 
                 if (finalTranscript) {
@@ -223,7 +223,7 @@
             r.onerror = (event) => {
                 isListening = false;
                 document.getElementById('micBtn').classList.remove('bg-emerald-500');
-                document.getElementById('micBtn').classList.add('bg-primary');
+                document.getElementById('micBtn').classList.add('bg-slate-900');
                 document.getElementById('pulseRing').classList.remove('listening');
                 if (event.error === 'not-allowed') {
                     document.getElementById('statusText').textContent = 'Microphone access denied';
@@ -269,3 +269,5 @@
 </body>
 
 </html>
+
+

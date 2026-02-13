@@ -66,33 +66,27 @@ function TeachContent() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 p-6 font-sans">
-            <header className="mb-8 flex items-center gap-4">
-                <Link href="/interpreter">
-                    <Button variant="ghost" size="icon">
-                        <ArrowLeft className="w-6 h-6" />
-                    </Button>
-                </Link>
-                <h1 className="text-2xl font-bold">Teach New Phrase</h1>
-            </header>
-
-            <div className="max-w-2xl mx-auto space-y-8">
+        <div className="h-full flex flex-col gap-8">
+            <div className="max-w-3xl mx-auto w-full space-y-8">
                 {/* Stepper */}
-                <div className="space-y-2">
-                    <div className="flex justify-between text-sm font-medium text-slate-500">
+                <div className="space-y-5 px-6">
+                    <div className="flex justify-between items-center">
                         {STEPS.map((step, i) => (
-                            <span key={step} className={i <= currentStep ? "text-blue-600 font-bold" : ""}>
-                                {i + 1}. {step}
-                            </span>
+                            <div key={step} className="flex flex-col items-center gap-2">
+                                <span className={`label-premium ${i <= currentStep ? "text-slate-900" : "opacity-30"}`}>
+                                    {step}
+                                </span>
+                                <div className={`h-1.5 w-1.5 rounded-full ${i <= currentStep ? "bg-indigo-600" : "bg-slate-200"}`}></div>
+                            </div>
                         ))}
                     </div>
-                    <Progress value={(currentStep / (STEPS.length - 1)) * 100} className="h-2" />
+                    <Progress value={(currentStep / (STEPS.length - 1)) * 100} className="h-1 bg-slate-100 rounded-full" />
                 </div>
 
-                <Card className="min-h-[400px] flex flex-col justify-center">
-                    <CardHeader className="text-center">
-                        <CardTitle className="text-2xl">{STEPS[currentStep]}</CardTitle>
-                        <CardDescription>
+                <Card className="glass-orb rounded-[32px] border-none shadow-sm min-h-[500px] flex flex-col overflow-hidden">
+                    <CardHeader className="text-center pt-16 pb-10">
+                        <CardTitle className="font-display font-black text-5xl uppercase tracking-tighter text-slate-900 mb-4">{STEPS[currentStep]}</CardTitle>
+                        <CardDescription className="label-premium opacity-60">
                             {currentStep === 0 && "Give your new sign a name."}
                             {currentStep === 1 && "Perform the sign clearly in front of the camera."}
                             {currentStep === 2 && "Phrase recorded successfully."}
@@ -100,30 +94,34 @@ function TeachContent() {
                         </CardDescription>
                     </CardHeader>
 
-                    <CardContent className="flex-1 flex flex-col items-center justify-center gap-6 p-6">
+                    <CardContent className="flex-1 flex flex-col items-center justify-center gap-8 p-10">
                         {currentStep === 0 && (
-                            <div className="w-full max-w-sm space-y-4">
-                                <Label htmlFor="phraseName">Phrase Name</Label>
+                            <div className="w-full max-w-sm space-y-6 text-center">
+                                <Label htmlFor="phraseName" className="label-premium opacity-40">Phrase Name</Label>
                                 <Input
                                     id="phraseName"
-                                    placeholder="e.g. 'Coffee', 'Where is the bathroom?'"
+                                    placeholder="e.g. 'Coffee'"
                                     value={phraseName}
                                     onChange={(e) => setPhraseName(e.target.value)}
                                     autoFocus
+                                    className="text-center text-5xl font-black tracking-tighter bg-transparent border-none focus-visible:ring-0 placeholder:text-slate-100 h-24 mb-4"
                                 />
+                                <div className="h-1 w-24 bg-indigo-500/10 mx-auto rounded-full"></div>
                             </div>
                         )}
 
                         {currentStep === 1 && (
-                            <div className="w-full relative aspect-video bg-black rounded-lg overflow-hidden border-2 border-slate-200">
-                                <video ref={videoRef} className="absolute inset-0 w-full h-full object-cover" autoPlay playsInline muted />
+                            <div className="w-full max-w-2xl relative aspect-video bg-black/5 rounded-[24px] overflow-hidden border border-black/5 shadow-inner">
+                                <video ref={videoRef} className="absolute inset-0 w-full h-full object-cover opacity-60" autoPlay playsInline muted />
                                 {!isCameraRunning && (
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <Button onClick={toggleCamera}>Turn On Camera</Button>
+                                    <div className="absolute inset-0 flex items-center justify-center bg-white/20 backdrop-blur-md">
+                                        <Button onClick={toggleCamera} className="rounded-full bg-slate-900 text-white font-black uppercase text-[10px] tracking-widest px-8 h-12 shadow-2xl">
+                                            Turn On Camera
+                                        </Button>
                                     </div>
                                 )}
                                 {isRecording && (
-                                    <div className="absolute top-4 right-4 animate-pulse bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                                    <div className="absolute top-6 right-6 animate-pulse bg-red-600 text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl">
                                         Recording... {recordCount}
                                     </div>
                                 )}
@@ -131,51 +129,51 @@ function TeachContent() {
                         )}
 
                         {currentStep === 2 && (
-                            <div className="text-center space-y-4">
-                                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto text-green-600">
-                                    <Check className="w-10 h-10" />
+                            <div className="text-center space-y-6">
+                                <div className="w-24 h-24 bg-green-500/10 rounded-full flex items-center justify-center mx-auto text-green-600">
+                                    <Check className="w-12 h-12" />
                                 </div>
-                                <p className="text-lg">Recorded <b>{recordCount}</b> frames for "{phraseName}".</p>
+                                <p className="text-xl font-bold text-slate-900">Recorded <span className="text-indigo-600">{recordCount}</span> frames for <span className="uppercase tracking-tighter">"{phraseName}"</span>.</p>
                             </div>
                         )}
 
                         {currentStep === 3 && (
-                            <div className="text-center space-y-4">
-                                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto text-blue-600">
-                                    <Save className="w-10 h-10" />
+                            <div className="text-center space-y-6">
+                                <div className="w-24 h-24 bg-indigo-500/10 rounded-full flex items-center justify-center mx-auto text-indigo-600 shadow-inner">
+                                    <Save className="w-12 h-12" />
                                 </div>
-                                <p className="text-lg">Saved to local device.</p>
+                                <p className="text-xl font-bold text-slate-900 uppercase tracking-tighter">Saved to local device</p>
                             </div>
                         )}
                     </CardContent>
 
-                    <CardFooter className="flex justify-between p-6 bg-slate-50 border-t">
-                        <Button variant="ghost" onClick={handleBack} disabled={isRecording}>
-                            Back
+                    <CardFooter className="flex justify-between p-10 bg-white/40 border-t border-black/5">
+                        <Button variant="ghost" onClick={handleBack} disabled={isRecording} className="label-premium rounded-full px-10 h-14 hover:bg-slate-100 uppercase font-black">
+                            {currentStep === 0 ? "Cancel" : "Back"}
                         </Button>
 
                         {currentStep === 0 && (
-                            <Button onClick={handleNext} disabled={!phraseName} size="lg">Next</Button>
+                            <Button onClick={handleNext} disabled={!phraseName} size="lg" className="label-premium rounded-full bg-slate-900 text-white px-12 h-14 shadow-xl hover:scale-105 transition-all font-black">Next</Button>
                         )}
 
                         {currentStep === 1 && (
                             isRecording ? (
-                                <Button onClick={handleStopRecording} variant="destructive" size="xl" className="animate-pulse">
+                                <Button onClick={handleStopRecording} variant="destructive" size="xl" className="label-premium rounded-full px-16 h-16 shadow-2xl animate-pulse font-black border-none">
                                     Stop Recording
                                 </Button>
                             ) : (
-                                <Button onClick={handleStartRecording} size="xl" className="bg-red-600 hover:bg-red-700 text-white">
-                                    <Mic className="w-6 h-6 mr-2" /> Start Recording
+                                <Button onClick={handleStartRecording} size="xl" className="label-premium rounded-full bg-red-600 hover:bg-red-700 text-white px-16 h-16 shadow-2xl hover:scale-105 transition-all font-black border-none">
+                                    <Mic className="w-6 h-6 mr-3" /> Start Recording
                                 </Button>
                             )
                         )}
 
                         {currentStep === 2 && (
-                            <div className="flex gap-2">
-                                <Button variant="outline" onClick={() => setCurrentStep(1)}>
+                            <div className="flex gap-4">
+                                <Button variant="outline" onClick={() => setCurrentStep(1)} className="label-premium rounded-full glass-orb px-10 h-14 shadow-sm border-none font-black text-slate-600">
                                     <RotateCcw className="w-4 h-4 mr-2" /> Redo
                                 </Button>
-                                <Button onClick={() => setCurrentStep(3)} size="lg">
+                                <Button onClick={() => setCurrentStep(3)} size="lg" className="label-premium rounded-full bg-slate-900 text-white px-12 h-14 shadow-xl font-black">
                                     Save Phrase
                                 </Button>
                             </div>
@@ -183,7 +181,7 @@ function TeachContent() {
 
                         {currentStep === 3 && (
                             <Link href="/interpreter">
-                                <Button size="lg" variant="default">Done</Button>
+                                <Button size="lg" variant="default" className="label-premium rounded-full bg-slate-900 text-white px-16 h-14 shadow-xl hover:scale-105 transition-all font-black">Done</Button>
                             </Link>
                         )}
                     </CardFooter>

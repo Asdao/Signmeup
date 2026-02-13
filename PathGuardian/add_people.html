@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>PathGuardian - Add People</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
     <script src="js/shared-data.js"></script>
@@ -15,14 +15,14 @@
             theme: {
                 extend: {
                     colors: { "primary": "#3670e2", "danger": "#ef4444", "warning": "#f59e0b", "success": "#10b981" },
-                    fontFamily: { "display": ["Lexend", "sans-serif"] },
+                    fontFamily: { "display": ["Outfit", "sans-serif"] },
                 },
             },
         }
     </script>
     <style>
         body {
-            font-family: 'Lexend', sans-serif;
+            font-family: 'Inter', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -44,7 +44,7 @@
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-display">
+<body class="bg-[#F8FAFC] text-slate-900 min-h-screen flex flex-col font-display">
 
     <!-- Header -->
     <header class="bg-white px-6 pt-10 pb-4 shadow-sm border-b border-slate-100 z-10">
@@ -71,16 +71,16 @@
             </h2>
             <div class="space-y-4">
                 <input type="text" id="new-name" placeholder="Full Name"
-                    class="w-full bg-slate-50 border-transparent rounded-xl px-4 py-3 font-semibold focus:border-primary focus:ring-0">
+                    class="w-full bg-[#F8FAFC] border-transparent rounded-xl px-4 py-3 font-semibold focus:border-primary focus:ring-0">
                 <select id="new-rel"
-                    class="w-full bg-slate-50 border-transparent rounded-xl px-4 py-3 font-semibold text-slate-600 focus:border-primary focus:ring-0">
+                    class="w-full bg-[#F8FAFC] border-transparent rounded-xl px-4 py-3 font-semibold text-slate-600 focus:border-primary focus:ring-0">
                     <option>Parent</option>
                     <option>Grandparent</option>
                     <option>Child</option>
                     <option>Friend</option>
                 </select>
                 <button onclick="addNewPerson()"
-                    class="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/30 active:scale-95 transition-transform flex items-center justify-center gap-2">
+                    class="w-full bg-slate-900 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/30 active:scale-95 transition-transform flex items-center justify-center gap-2">
                     <span class="material-icons-round">add</span> Add to Circle
                 </button>
             </div>
@@ -105,7 +105,7 @@
             <span class="text-[10px] font-medium">Alerts</span>
         </a>
         <a href="add_people.html"
-            class="w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center -mt-8 border-4 border-slate-50 shadow-xl active:scale-95 transition-transform">
+            class="w-14 h-14 bg-slate-900 text-white rounded-full flex items-center justify-center -mt-8 border-4 border-slate-50 shadow-xl active:scale-95 transition-transform">
             <span class="material-icons-round text-3xl">add</span>
         </a>
         <a href="caretaker_history.html" class="flex flex-col items-center gap-1 text-slate-400">
@@ -155,7 +155,7 @@
                         <h3 class="font-bold text-lg text-slate-800">${p.name}</h3>
                         <p class="text-xs text-slate-500 font-bold">${p.relationship}</p>
                     </div>
-                    <button onclick="window.location.href='caretaker_dashboard.html'" class="w-10 h-10 rounded-xl bg-slate-50 text-primary flex items-center justify-center active:bg-slate-100">
+                    <button onclick="window.location.href='caretaker_dashboard.html'" class="w-10 h-10 rounded-xl bg-[#F8FAFC] text-primary flex items-center justify-center active:bg-slate-100">
                         <span class="material-icons-round">chevron_right</span>
                     </button>
                     ${people.length > 1 ? `<button onclick="remove('${p.id}')" class="w-10 h-10 rounded-xl bg-red-50 text-red-500 flex items-center justify-center active:bg-red-100"><span class="material-icons-round">delete</span></button>` : ''}
@@ -205,3 +205,5 @@
 </body>
 
 </html>
+
+

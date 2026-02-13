@@ -15,7 +15,8 @@ export default {
         'glass-orb-border': 'rgba(255, 255, 255, 0.25)',
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        'sans': ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+        'display': ['"Outfit"', 'sans-serif'],
       },
       keyframes: {
         liquidFlow: {

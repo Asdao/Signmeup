@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { generateContent } from '../../lib/genai';
-import { Send, Mic, MicOff, LayoutDashboard, Trash2 } from 'lucide-react';
+import { Send, Mic, MicOff, LayoutDashboard, Trash2, User } from 'lucide-react';
 import { useSpeechRecognition } from '../../hooks/useSpeechRecognition';
 import { useSpeechSynthesis } from '../../hooks/useSpeechSynthesis';
 import { VectorStore } from '../../lib/memory';
@@ -103,26 +103,22 @@ function Chat({ autoSpeak }: ChatProps) {
     };
 
     return (
-        <div className="flex flex-col h-full max-w-4xl mx-auto px-4">
-            {/* Main Chat Area */}
-            <main className="flex-1 no-scrollbar overflow-y-auto flex flex-col gap-6 py-8">
+        <div className="flex-1 flex flex-col h-full max-w-5xl mx-auto w-full px-6">
+            {/* Immersive Scroll Area */}
+            <main className="flex-1 no-scrollbar overflow-y-auto flex flex-col gap-8 py-12">
                 {messages.map((msg, idx) => (
-                    <div key={idx} className={`flex gap-3 w-full ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                        {/* Label on the left side */}
-                        {msg.role === 'model' && (
-                            <div className="flex items-start pt-2">
-                                <span className="text-5xl">
-                                    👧
-                                </span>
-                            </div>
-                        )}
+                    <div key={idx} className={`flex gap-6 w-full ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'} animate-in fade-in slide-in-from-bottom-4 duration-500`} style={{ animationDelay: `${idx * 0.05}s` }}>
+                        {/* Avatar / Icon */}
+                        <div className={`shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-lg ${msg.role === 'model' ? 'bg-white glass-orb scale-110' : 'bg-slate-900 shadow-slate-200'}`}>
+                            {msg.role === 'model' ? '👧' : <User className="w-6 h-6 text-white" />}
+                        </div>
 
                         {/* Message bubble */}
-                        <div className={`max-w-[85%] p-6 rounded-3xl ${msg.role === 'user'
-                            ? 'bg-indigo-600 text-white rounded-tr-none shadow-md shadow-indigo-100'
-                            : 'bg-white text-slate-800 rounded-tl-none border border-black/5 shadow-sm shadow-black/5'
+                        <div className={`max-w-[80%] p-8 rounded-[2.5rem] shadow-2xl transition-all ${msg.role === 'user'
+                            ? 'bg-slate-900 text-white rounded-tr-none shadow-slate-200'
+                            : 'bg-white/80 backdrop-blur-xl text-slate-800 rounded-tl-none border border-white/40 shadow-slate-100'
                             }`}>
-                            <p className="text-lg leading-relaxed font-medium">
+                            <p className="text-xl leading-relaxed font-semibold tracking-tight">
                                 {msg.text}
                             </p>
                         </div>
@@ -131,51 +127,52 @@ function Chat({ autoSpeak }: ChatProps) {
 
                 {/* Dashboard Shortcut prompt after Aurora speaks */}
                 {!loading && messages[messages.length - 1]?.role === 'model' && (
-                    <div className="flex gap-4 animate-in fade-in slide-in-from-bottom-2 duration-700">
+                    <div className="flex gap-4 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500">
                         <Link
                             to="/dashboard"
-                            className="bg-white/60 backdrop-blur-md border border-black/5 px-4 py-3 rounded-2xl flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-indigo-600 hover:bg-white transition-all shadow-sm"
+                            className="glass-orb px-8 py-4 rounded-3xl flex items-center gap-4 label-premium text-indigo-600 border-none shadow-xl hover:scale-105"
                         >
-                            <LayoutDashboard className="w-4 h-4" />
-                            View Biometric Analysis
+                            <LayoutDashboard className="w-5 h-5" />
+                            Deep Biometric Analysis
                         </Link>
                     </div>
                 )}
 
                 {loading && (
-                    <div className="flex items-center gap-3 ml-2 py-4">
-                        <div className="flex gap-1.5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce"></div>
-                            <div className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce [animation-delay:0.2s]"></div>
-                            <div className="w-1.5 h-1.5 rounded-full bg-slate-400 animate-bounce [animation-delay:0.4s]"></div>
+                    <div className="flex items-center gap-4 ml-20 py-6">
+                        <div className="flex gap-2">
+                            <div className="w-2.5 h-2.5 rounded-full bg-indigo-500/40 animate-bounce"></div>
+                            <div className="w-2.5 h-2.5 rounded-full bg-indigo-500/40 animate-bounce [animation-delay:0.2s]"></div>
+                            <div className="w-2.5 h-2.5 rounded-full bg-indigo-500/40 animate-bounce [animation-delay:0.4s]"></div>
                         </div>
                     </div>
                 )}
                 <div ref={messagesEndRef} />
             </main>
 
-            {/* Footer / Input Container */}
-            <footer className="shrink-0 pb-8 mt-4">
-                <div className="bg-white border border-black/5 rounded-[32px] p-2 shadow-xl shadow-indigo-500/10 transition-all focus-within:shadow-indigo-500/15">
-                    <div className="flex items-center gap-1">
+            {/* Tactile Footer Dock */}
+            <footer className="shrink-0 pb-12 pt-6">
+                <div className="glass-orb border-none rounded-full p-3 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] focus-within:ring-2 ring-indigo-500/20">
+                    <div className="flex items-center gap-2">
                         {browserSupportsSpeechRecognition && (
                             <button
                                 onClick={toggleListening}
-                                className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${isListening ? 'bg-red-50 text-red-500 animate-pulse' : 'text-slate-400 hover:bg-slate-50'}`}
+                                className={`w-14 h-14 rounded-full flex items-center justify-center transition-all ${isListening ? 'bg-red-500 text-white shadow-lg animate-pulse' : 'text-slate-400 hover:bg-slate-50'}`}
+                                title={isListening ? "Stop Listening" : "Start Voice Input"}
                             >
-                                {isListening ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                                {isListening ? <MicOff className="w-6 h-6" /> : <Mic className="w-6 h-6" />}
                             </button>
                         )}
                         <button
                             onClick={clearChat}
-                            className="w-12 h-12 rounded-full flex items-center justify-center text-slate-400 hover:bg-red-50 hover:text-red-500 transition-all"
-                            title="Clear chat"
+                            className="w-14 h-14 rounded-full flex items-center justify-center text-slate-300 hover:bg-red-50 hover:text-red-500 transition-all"
+                            title="Reset Conversation"
                         >
-                            <Trash2 className="w-5 h-5" />
+                            <Trash2 className="w-6 h-6" />
                         </button>
                         <input
-                            className="flex-1 bg-transparent border-none text-slate-800 text-lg px-6 focus:ring-0 placeholder:text-slate-300 font-semibold outline-none"
-                            placeholder={isListening ? "Listening..." : "How can I help you today?"}
+                            className="flex-1 bg-transparent border-none text-slate-800 text-xl px-4 focus:ring-0 placeholder:text-slate-200 font-bold outline-none"
+                            placeholder={isListening ? "I'm listening..." : "How can I assist you today?"}
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
@@ -183,9 +180,9 @@ function Chat({ autoSpeak }: ChatProps) {
                         <button
                             onClick={() => handleSend()}
                             disabled={loading || (!input.trim() && !isListening)}
-                            className="w-12 h-12 bg-slate-900 text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-black/20 disabled:opacity-20 disabled:shadow-none"
+                            className="w-14 h-14 bg-slate-900 text-white rounded-full flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-xl disabled:opacity-10"
                         >
-                            <Send className="w-5 h-5 translate-x-0.5" />
+                            <Send className="w-6 h-6 translate-x-0.5" />
                         </button>
                     </div>
                 </div>

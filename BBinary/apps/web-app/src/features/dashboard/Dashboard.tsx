@@ -121,9 +121,9 @@ export default function Dashboard() {
                         />
 
                         {/* Status Overlay */}
-                        <div className="absolute top-6 left-6 flex items-center gap-3 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-white/40 shadow-sm z-10">
+                        <div className="absolute top-6 left-6 flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/90 backdrop-blur-md border border-white/40 shadow-sm z-10 transition-all">
                             <div className={`w-2 h-2 rounded-full animate-pulse ${error ? 'bg-red-500' : isFalling ? 'bg-orange-500' : 'bg-emerald-500'}`} />
-                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-900">
+                            <span className="label-premium text-slate-900">
                                 {isLoading ? 'Calibrating...' : error ? 'System Error' : isFalling ? 'EMERGENCY' : isHydrating ? 'HYDRATING' : 'Live Awareness'}
                             </span>
                         </div>
@@ -141,7 +141,7 @@ export default function Dashboard() {
                                         height: `${(obj.bbox.height / (videoRef.current?.videoHeight || 480)) * 100}%`
                                     }}
                                 >
-                                    <span className="absolute -top-6 left-0 text-[8px] font-black bg-indigo-500 text-white px-2 py-0.5 rounded-full uppercase tracking-tighter whitespace-nowrap shadow-md">
+                                    <span className="absolute -top-6 left-0 label-premium bg-slate-900 text-white px-3 py-1 rounded-full whitespace-nowrap shadow-md scale-75 origin-left">
                                         {obj.category} {(obj.score * 100).toFixed(0)}%
                                     </span>
                                 </div>
@@ -151,25 +151,25 @@ export default function Dashboard() {
 
                     {/* Biometric Analysis Cards */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <div className="p-6 rounded-3xl glass-orb text-center flex flex-col items-center gap-2 hover:scale-[1.02] transition-transform">
+                        <div className="p-6 rounded-3xl glass-orb text-center flex flex-col items-center gap-3 hover:scale-[1.02] transition-transform">
                             <Heart className={`w-5 h-5 ${emotion.emotion === 'Happy' ? 'text-pink-500' : 'text-slate-400'}`} />
-                            <span className="text-[10px] font-bold opacity-40 uppercase tracking-widest">Resonance</span>
-                            <span className="text-xl font-black lowercase">{emotion.emotion}</span>
+                            <span className="label-premium opacity-40">Resonance</span>
+                            <span className="text-xl font-black">{emotion.emotion}</span>
                         </div>
-                        <div className="p-6 rounded-3xl glass-orb text-center flex flex-col items-center gap-2 hover:scale-[1.02] transition-transform">
+                        <div className="p-6 rounded-3xl glass-orb text-center flex flex-col items-center gap-3 hover:scale-[1.02] transition-transform">
                             <Activity className="w-5 h-5 text-indigo-500" />
-                            <span className="text-[10px] font-bold opacity-40 uppercase tracking-widest">Hydration</span>
-                            <span className="text-xl font-black lowercase">{isHydrating ? 'Active' : 'Secure'}</span>
+                            <span className="label-premium opacity-40">Hydration</span>
+                            <span className="text-xl font-black">{isHydrating ? 'Active' : 'Secure'}</span>
                         </div>
-                        <div className="p-6 rounded-3xl glass-orb text-center flex flex-col items-center gap-2 hover:scale-[1.02] transition-transform">
+                        <div className="p-6 rounded-3xl glass-orb text-center flex flex-col items-center gap-3 hover:scale-[1.02] transition-transform">
                             <Shield className={`w-5 h-5 ${isFalling ? 'text-red-600 animate-pulse' : 'text-emerald-500'}`} />
-                            <span className="text-[10px] font-bold opacity-40 uppercase tracking-widest">Safety</span>
-                            <span className="text-xl font-black lowercase">{isFalling ? 'FALLEN' : 'Secure'}</span>
+                            <span className="label-premium opacity-40">Safety</span>
+                            <span className="text-xl font-black">{isFalling ? 'FALLEN' : 'Secure'}</span>
                         </div>
-                        <div className="p-6 rounded-3xl glass-orb text-center flex flex-col items-center gap-2 hover:scale-[1.02] transition-transform">
+                        <div className="p-6 rounded-3xl glass-orb text-center flex flex-col items-center gap-3 hover:scale-[1.02] transition-transform">
                             <Brain className="w-5 h-5 text-purple-500" />
-                            <span className="text-[10px] font-bold opacity-40 uppercase tracking-widest">Processing</span>
-                            <span className="text-xl font-black lowercase">Edge</span>
+                            <span className="label-premium opacity-40">Processing</span>
+                            <span className="text-xl font-black uppercase">Edge</span>
                         </div>
                     </div>
                 </div>
@@ -180,7 +180,7 @@ export default function Dashboard() {
                         <div className="flex items-center justify-between mb-8">
                             <div className="flex items-center gap-3">
                                 <Clock className="w-5 h-5 text-slate-400" />
-                                <h3 className="text-sm font-black uppercase tracking-widest text-slate-900">Live Activity</h3>
+                                <h3 className="label-premium text-slate-900 border-none opacity-100">Live Activity</h3>
                             </div>
                             <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
                         </div>
@@ -214,7 +214,7 @@ export default function Dashboard() {
                         <div className="mt-8 p-6 rounded-2xl bg-indigo-50/50 border border-indigo-100">
                             <div className="flex items-start gap-4">
                                 <Brain className="w-4 h-4 text-indigo-500 mt-1 shrink-0" />
-                                <p className="text-[10px] font-bold text-indigo-900/60 leading-relaxed uppercase tracking-tighter">
+                                <p className="label-premium text-indigo-900/60 leading-relaxed opacity-100 border-none">
                                     Strategic Analysis: Aurora is currently processing your environment for supportive context.
                                 </p>
                             </div>

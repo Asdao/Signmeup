@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>PathGuardian - Navigation</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -19,14 +19,14 @@
             theme: {
                 extend: {
                     colors: { "primary": "#2563eb", "primary-dark": "#1e40af", "red-alert": "#ef4444" },
-                    fontFamily: { "display": ["Lexend", "sans-serif"] },
+                    fontFamily: { "display": ["Outfit", "sans-serif"] },
                 },
             },
         }
     </script>
     <style>
         body {
-            font-family: 'Lexend', sans-serif;
+            font-family: 'Inter', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -164,7 +164,7 @@
     <!-- Chatbot Overlay -->
     <div id="chatbot"
         class="absolute bottom-0 left-0 right-0 z-40 bg-white h-[60vh] rounded-t-3xl shadow-2xl transform translate-y-full transition-transform duration-300 flex flex-col">
-        <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-3xl">
+        <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-[#F8FAFC] rounded-t-3xl">
             <div class="flex items-center gap-2">
                 <span class="material-icons text-primary">smart_toy</span>
                 <span class="font-bold text-slate-800">Aurora Assistant</span>
@@ -254,7 +254,7 @@
         function sendMood(mood) {
             // Add user msg
             const userDiv = document.createElement('div');
-            userDiv.className = "bg-primary text-white self-end p-3 rounded-2xl rounded-tr-none max-w-[80%] text-sm ml-auto mb-2";
+            userDiv.className = "bg-slate-900 text-white self-end p-3 rounded-2xl rounded-tr-none max-w-[80%] text-sm ml-auto mb-2";
             userDiv.textContent = mood;
             chatMsgs.appendChild(userDiv);
 
@@ -286,3 +286,5 @@
 </body>
 
 </html>
+
+

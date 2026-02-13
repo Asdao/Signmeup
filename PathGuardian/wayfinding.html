@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>PathGuardian - Walking Navigation</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -25,7 +25,7 @@
     <style>
         body {
             min-height: 100dvh;
-            font-family: 'Lexend', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         #map {
@@ -121,15 +121,15 @@
 
         <!-- Distance / ETA / Status -->
         <div class="flex gap-3 mb-4">
-            <div class="flex-1 bg-slate-50 rounded-xl py-3 px-4 text-center">
+            <div class="flex-1 bg-[#F8FAFC] rounded-xl py-3 px-4 text-center">
                 <span class="block text-xl font-bold text-primary" id="dist-left">650m</span>
                 <span class="text-xs text-slate-500">remaining</span>
             </div>
-            <div class="flex-1 bg-slate-50 rounded-xl py-3 px-4 text-center">
+            <div class="flex-1 bg-[#F8FAFC] rounded-xl py-3 px-4 text-center">
                 <span class="block text-xl font-bold text-primary" id="eta-left">8 min</span>
                 <span class="text-xs text-slate-500">ETA</span>
             </div>
-            <div class="flex-1 bg-slate-50 rounded-xl py-3 px-4 text-center">
+            <div class="flex-1 bg-[#F8FAFC] rounded-xl py-3 px-4 text-center">
                 <span class="block text-xl font-bold" id="direction-status" style="color:#10b981">On Track</span>
                 <span class="text-xs text-slate-500">status</span>
             </div>
@@ -318,3 +318,5 @@
 </body>
 
 </html>
+
+

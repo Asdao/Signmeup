@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>PathGuardian - Alert History</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
     <script>
@@ -30,7 +30,7 @@
     </script>
     <style>
         body {
-            font-family: 'Lexend', sans-serif;
+            font-family: 'Inter', sans-serif;
             min-height: 100dvh;
         }
     </style>
@@ -56,7 +56,7 @@
     <!-- Person Filter Tabs -->
     <div class="px-6 flex gap-3 overflow-x-auto pb-4" id="person-tabs">
         <button onclick="filterAlerts('all')"
-            class="tab-btn active flex items-center gap-2 px-5 py-3 rounded-full text-sm font-bold whitespace-nowrap bg-primary text-white shadow-lg shadow-primary/20 transition-all active:scale-95">
+            class="tab-btn active flex items-center gap-2 px-5 py-3 rounded-full text-sm font-bold whitespace-nowrap bg-slate-900 text-white shadow-lg shadow-primary/20 transition-all active:scale-95">
             <span class="material-icons-round text-lg">groups</span>All People
         </button>
         <button onclick="filterAlerts('eleanor')"
@@ -215,11 +215,11 @@
         function filterAlerts(person) {
             // Update tabs
             document.querySelectorAll('.tab-btn').forEach(function (btn) {
-                btn.classList.remove('bg-primary', 'text-white', 'shadow-lg', 'shadow-primary/20');
+                btn.classList.remove('bg-slate-900', 'text-white', 'shadow-lg', 'shadow-primary/20');
                 btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200', 'shadow-sm');
             });
             event.currentTarget.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200', 'shadow-sm');
-            event.currentTarget.classList.add('bg-primary', 'text-white', 'shadow-lg', 'shadow-primary/20');
+            event.currentTarget.classList.add('bg-slate-900', 'text-white', 'shadow-lg', 'shadow-primary/20');
 
             // Filter cards
             document.querySelectorAll('.alert-card').forEach(function (card) {
@@ -234,3 +234,5 @@
 </body>
 
 </html>
+
+
