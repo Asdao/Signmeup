@@ -1,4 +1,4 @@
-# Aurora (BBinary)
+# Aurora (Dashboard)
 ### The AI Wellness Assistant
 
 Aurora is the proactive, vision-intelligent heart of the UnifierBBinary suite. Built with **React 19** and **Google Gemini**, it provides empathetic support while monitoring safety through edge-based computer vision.
