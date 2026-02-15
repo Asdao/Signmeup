@@ -1,34 +1,35 @@
-# SignMeUp - Local Sign Language Recognition
+# SignMeUp
+### Privacy-Focused Sign Language Recognition
 
-A privacy-focused, offline-capable web application for learning and recognizing sign language using your webcam.
+SignMeUp is a real-time gesture translation engine that allows users to teach the system their own sign language. It runs entirely in the browser, ensuring maximum privacy for sensitive communication.
 
-## Tech Stack
+## Core Features
 
-**Frontend & UI**
-- **Framework**: [Next.js 16](https://nextjs.org/) (React 19, Turbopack)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
-- **Components**: [shadcn/ui](https://ui.shadcn.com/) (Radix UI)
-- **Icons**: [Lucide React](https://lucide.dev/)
+- **Personalized Training**: Record your own landmarks to teach the AI specific signs for "Medicine," "Doctor," "Help," etc.
+- **Edge Intelligence**: Landmark extraction via MediaPipe and phrase classification via a local LSTM model.
+- **Real-Time Translation**: Low-latency text output from hand gestures.
+- **Zero-Cloud**: No camera data is ever uploaded. Only anonymized hand coordinates are processed.
 
-**Machine Learning (Browser)**
-- **Vision**: [MediaPipe Tasks](https://developers.google.com/mediapipe) (Hand & Pose Landmarkers)
-- **Inference**: [TensorFlow.js](https://www.tensorflow.org/js) (WASM backend for performance)
-- **Database**: IndexedDB (via `idb`) for local dataset storage
+## Setup
 
-**Tools & Scripts**
-- **Runtime**: Node.js (Training scripts), Python (WLASL Dataset Import)
-- **Python Libs**: `opencv-python`, `mediapipe`, `numpy`
+If running standalone:
 
----
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Launch Development Server**:
+   ```bash
+   npm run dev
+   ```
+   *Available on http://localhost:3000*
 
-## Quick Start
+## Architecture
 
-### 1. Install Dependencies
-
-**Web App (Node.js)**
-```bash
-pnpm install
-```
+- **Framework**: Next.js (App Router).
+- **Vision Engine**: MediaPipe Hand Landmarks.
+- **ML Engine**: TensorFlow.js / Custom LSTM.
+- **Dataset**: Built-in support for WLASL (World-Level American Sign Language) dataset.
 
 **Python Tools (Optional - for advanced dataset import)**
 ```bash

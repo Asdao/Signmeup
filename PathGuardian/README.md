@@ -1,14 +1,35 @@
 # PathGuardian 2.0
+### Accessibility-First Navigation & Safety
 
-**Independent Mobility, Shared Peace of Mind**
+PathGuardian 2.0 is a specialized navigation tool designed for seniors and individuals with cognitive or physical impairments. It prioritizes simplicity, voice interaction, and caregiver peace of mind.
 
-PathGuardian is an accessibility-first navigation app designed for seniors and people with disabilities. It provides voice-guided wayfinding, real-time location tracking for caregivers, and smart deviation detection — all in a simple, large-button interface.
+## Key Features
 
-![PathGuardian Landing](wheelchair_hero.png)
+- **Voice-First Interaction**: Hands-free navigation commands using the Web Speech API.
+- **Zero-Friction UI**: 64px touch targets and high-contrast color schemes for better accessibility.
+- **Real-Time Caregiver Dashboard**: Live tracking with route deviation alerts and location history.
+- **Simulation Mode**: Test and demonstrate safety features without needing to travel.
+- **SOS Integration**: One-tap emergency triggers that notify trusted contacts immediately.
 
----
+## 🚀 Setup
 
-## Features
+If running standalone:
+
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Launch Server**:
+   ```bash
+   npx http-server . -p 8081
+   ```
+
+## 🛠️ Technology
+
+- **Frontend**: Vanilla JavaScript + HTML5.
+- **Mapping**: Leaflet.js with OpenStreetMap (OSM).
+- **Voice Engine**: Web Speech API (Recognition & Synthesis).
+- **Styling**: Custom CSS optimized for accessibility.
 
 ### For Navigators (Seniors / Users)
 - **Voice-first navigation** — say "Take me to National Museum" and go

@@ -1,21 +1,42 @@
-# Aurora - AI-Powered Wellness & Safety Assistant
+# Aurora (BBinary)
+### The AI Wellness Assistant
 
-Aurora is an intelligent wellness companion that combines real-time computer vision, emotion detection, and conversational AI to provide empathetic support and safety monitoring. She can detect user activities, emotions, and potential emergencies while maintaining natural conversations. 
+Aurora is the proactive, vision-intelligent heart of the UnifierBBinary suite. Built with **React 19** and **Google Gemini**, it provides empathetic support while monitoring safety through edge-based computer vision.
 
-This was created for the Beyond Binary 2026 Hackathon.
+## Core Features
 
-## Features
+- **Mood & Emotion Sensing**: Real-time classification of emotional states using ONNX Runtime.
+- **Safety Heuristics**: Automated fall detection and hydration tracking using MediaPipe.
+- **Contextual Memory**: Remembers past interactions to provide personalized support.
+- **Glassmorphism UI**: A premium, high-contrast dashboard for easy status checking.
 
-### Vision Intelligence
-- **Real-time Emotion Detection**: Analyzes facial expressions using MediaPipe and ONNX models, a ONNX conversion of Nonovogo/face-emotions2 
-- **Activity Recognition**: Detects hydration events (drinking water) and object interactions
-- **Fall Detection**: Monitors body posture and movement for safety alerts
-- **Live Video Feed**: Color camera feed with object detection bounding boxes
+## 🚀 Independent Setup
 
-### Conversational AI
-- **Empathetic Chat Interface**: Natural language conversations powered by Google Gemini
-- **Context-Aware Responses**: Leverages vector embeddings and recent observations for situational awareness
-- **Voice Interaction**: Full STT (Speech-to-Text) and TTS (Text-to-Speech) support
+If you wish to run Aurora separately:
+
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Environment Variables**:
+   Ensure `.env` in the root contains:
+   ```env
+   VITE_GOOGLE_API_KEY=your_key
+   ```
+
+3. **Development Server**:
+   ```bash
+   npm run dev
+   ```
+
+## 🛠️ Tech Stack
+
+- **Framework**: React 19 + TypeScript.
+- **Vision**: Google MediaPipe Tasks.
+- **AI**: Google Gemini (GenAI SDK).
+- **Styling**: TailwindCSS 4.
+- **Runtime**: Vite 7.
 - **Memory System**: Stores and retrieves conversation history and environmental observations
 
 ### User Interface
