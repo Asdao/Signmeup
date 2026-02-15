@@ -1,4 +1,4 @@
-# UnifierBBinary
+# Signmeup
 ### Advanced Wellness, Accessibility & Safety Suite
 
 > [!NOTE]
